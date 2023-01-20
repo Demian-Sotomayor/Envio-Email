@@ -12,22 +12,29 @@ document.addEventListener('DOMContentLoaded', function() {
     inputMensaje.addEventListener('blur', validar);
 
     function validar(e) {
+
         if(e.target.value.trim() === '') {
-            mostrarAlerta();
+            mostrarAlerta(`El campo ${e.target.id} es obligatorio`, e.target.parentElement);
         } else {
             console.log('Si hay algo...');
         }
     }
 
-    function mostrarAlerta() {
+    function mostrarAlerta(mensaje, referencia) {
+
+        // Comprueba si ya existe una alerta
+        const alerta = referencia.querySelector('.alerta');
+        if(alerta){
+            alerta.remove();
+        }
 
         // Generar alerta en HTML
         const error = document.createElement('p');
-        error.textContent = 'Todos los campos son obligatorios';
-        error.classList.add('bg-red-600', 'text-white', 'p-2', 'mt-4', 'text-center')
+        error.textContent = mensaje;
+        error.classList.add('bg-red-600', 'text-white', 'p-2', 'mt-4', 'text-center', 'alerta')
 
         // Inyectar el error al formulario
-        formulario.appendChild(error);
+        referencia.appendChild(error);
     }
     
 });
