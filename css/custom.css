@@ -33,9 +33,11 @@ form {
 }
 
 #spinner {
-    display: none;
+    /* display: none; */
     justify-content: center;
-    padding: 3rem 0;
+    padding: 0 0 3rem 0;
+    align-items: center;
+    align-content: center;
 }
 
 
@@ -60,7 +62,7 @@ form {
     display: block;
     width: 25%;
     height: 25%;
-    background-color: #0288d1;
+    background-color: #185a9d;
     border-radius: 100%;
     animation: sk-chase-dot-before 2.0s infinite ease-in-out both; 
   }

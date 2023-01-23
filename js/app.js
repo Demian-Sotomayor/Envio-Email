@@ -13,19 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const formulario = document.querySelector('#enviar-mail');
-    const btnSubmit = document.querySelector('#enviar-mail button[type="submit"]')
-    const btnReset = document.querySelector('#resetBtn')
+    const btnSubmit = document.querySelector('#enviar-mail button[type="submit"]');
+    const btnReset = document.querySelector('#resetBtn');
+    const spinner = document.querySelector('#spinner');
 
 /* ———————————————————————————————— Asignar eventos ———————————————————————————————————— */
 
     inputEmail.addEventListener('input', validar);
     inputAsunto.addEventListener('input', validar);
     inputMensaje.addEventListener('input', validar);
+
+    formulario.addEventListener('submit', enviarEmail);
     
     btnReset.addEventListener('click', function(e) {
         e.preventDefault();
 
-        // reiniciar el objeto
+/* ———————————————————————————————  reiniciar el objeto ———————————————————————————————— */
         email.email = '';
         email.asunto = '';
         email.mensaje = '';
@@ -33,6 +36,32 @@ document.addEventListener('DOMContentLoaded', function() {
         formulario.reset();
         comprobarEmail();
     })
+
+    function enviarEmail(e) {
+        e.preventDefault()
+
+        spinner.classList.add('flex')
+        spinner.classList.remove('hidden')
+        
+        setTimeout(() => {
+            spinner.classList.remove('flex')
+            spinner.classList.add('hidden')
+
+            resetForm();
+
+            // Crear una alerta
+            const mensajeEnviado = document.createElement('p');
+            mensajeEnviado.classList.add('bg-green-500', 'text-white', 'p-2', 'text-center', 'rounded-lg', 'mt-10', 'font-bold', 'text-sm', 'uppercase');
+            mensajeEnviado.textContent = 'Mensaje enviado correctamente';
+            
+            formulario.appendChild(mensajeEnviado);
+            
+            setTimeout(() => {
+                mensajeEnviado.remove();
+            }, 3000);
+
+        }, 3000);
+    }
 
     function validar(e) {
 
@@ -96,8 +125,16 @@ document.addEventListener('DOMContentLoaded', function() {
         } 
         
         btnSubmit.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
 
-
+    function resetForm() {
+        // Reiniciar el objeto
+        email.email = '';
+        email.asunto = '';
+        email.mensaje = '';
+    
+        formulario.reset();
+        comprobarEmail();
     }
 
 
