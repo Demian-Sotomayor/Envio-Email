@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const email = {
         email: '',
         asunto: '',
-        mensaje: ''
+        mensaje: '',
     }
 
    
@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             resetForm();
 
-            // Crear una alerta
+ /* ———————————————————————————————— Crear una alerta ——————————————————————————————— */
+
             const mensajeEnviado = document.createElement('p');
             mensajeEnviado.classList.add('bg-green-500', 'text-white', 'p-2', 'text-center', 'rounded-lg', 'mt-10', 'font-bold', 'text-sm', 'uppercase');
             mensajeEnviado.textContent = 'Mensaje enviado correctamente';
@@ -78,9 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
             comprobarEmail();
             return;
         };
+    
 
-        limpiarAlerta(e.target.parentElement);
-
+        limpiarAlerta(e.target.parentElement);    
+        
 /* —————————————————————————————— Asignar los valores —————————————————————————————————— */
 
         email[e.target.id] = e.target.value.trim().toLowerCase();
@@ -132,10 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
         email.email = '';
         email.asunto = '';
         email.mensaje = '';
-    
+
         formulario.reset();
         comprobarEmail();
     }
-
 
 });
